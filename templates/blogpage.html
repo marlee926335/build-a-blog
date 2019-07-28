@@ -1,1 +1,29 @@
-page that displays blog posts
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Your Blog Posts</h1>
+
+
+    <hr>
+
+    {% if blogs|length == 0 %}
+    <p>No blogs yet</p>
+    {% else %}
+
+        <ul>
+            {% for blog in blogs %}
+            <li>{{task.name}}
+             
+            </li>
+            {% endfor %}
+        </ul>
+
+    {% endif %}
+
+
+    <hr />
+
+
+{% endblock %}
+
+<!--LIST CREATED BLOGS-->
