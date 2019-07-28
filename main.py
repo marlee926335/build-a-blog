@@ -37,6 +37,9 @@ def new ():
             db.session.commit()
             return redirect('/blog')
 
+        if request.method == 'GET':
+            return render_template('new.html')
+
         return render_template('new.html', title="Build A Blog")
 
 
