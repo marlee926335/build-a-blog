@@ -27,19 +27,19 @@ class Blog(db.Model):
 @app.route('/blog', methods =['POST', 'GET'])
 def blog ():
 
-    if request.method == 'POST':
-        blog_post = request.form['blog']
-        new_blog_post = Blog(blog_post, owner)
-        db.session.add(new_blog_post)
-        db.session.commit()
 
     return render_template('blogpage.html')
 
 
 @app.route('/new-post', methods=['POST'])
 def new_post():
+       if request.method == 'POST':
+        blog_post = request.form['blog']
+        new_blog_post = Blog(title, body)
+        db.session.add(new_blog_post)
+        db.session.commit()
 
-    return redirect('/')
+    return redirect('/blog')
 
 
 if __name__ == '__main__':
