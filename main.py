@@ -26,6 +26,7 @@ class Blog(db.Model):
 
 @app.route('/blog', methods =['POST', 'GET'])
 def blog ():
+    
 
 
     return render_template('blogpage.html')
