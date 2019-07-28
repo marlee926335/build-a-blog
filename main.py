@@ -80,16 +80,11 @@ def register():
     return render_template('register.html')
 
 #adding page for all blog posts
-@app.route('/blog-posts', methods=['GET'])
-def blog_posts():
+@app.route('/blog', methods=['GET'])
+def blog():
 
     return render_template('blogpage.html')
 
-
-@app.route('/logout')
-def logout():
-    del session['email']
-    return redirect('/')
 
 @app.route('/', methods =['POST', 'GET'])
 def index ():
@@ -107,14 +102,8 @@ def index ():
     #completed_tasks = Task.query.filter_by(completed=True,owner=owner).all()
     return render_template('blogs.html',title="Build A Blog", #tasks=tasks, completed_tasks=completed_tasks)
 
-@app.route('/delete-task', methods=['POST'])
-def delete_task():
-
-    task_id = int(request.form['task-id'])
-    task = Task.query.get(task_id)
-    task.completed = True
-    db.session.add(task)
-    db.session.commit()
+@app.route('/new-post', methods=['POST'])
+def new_post():
 
     return redirect('/')
 
