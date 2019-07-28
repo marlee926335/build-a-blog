@@ -27,15 +27,16 @@ def blog ():
     return render_template('blog.html',title="Your Blog Posts", blogs=blogs)
 
 
-@app.route('/new-post', methods=['POST', 'GET'])
-def new_post():
+@app.route('/new', methods =['POST', 'GET'])
+def new ():
         if request.method == 'POST':
             blog_post = request.form['blog']
-            new_blog_post = Blog(title, blog_post)
+            blog_title = request.form['title']
+            new_blog_post = Blog(blog_title, blog_post)
             db.session.add(new_blog_post)
             db.session.commit()
 
-            return render_template('new-post.html')
+        return render_template('new.html', title="Build A Blog")
 
 
 if __name__ == '__main__':
