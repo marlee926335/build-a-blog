@@ -1,14 +1,12 @@
 from flask import Flask, request, redirect, render_template, session, flash
 from flask_sqlalchemy import SQLAlchemy
 
-#MAKE SURE TO SET UP SQL DATABASE
 
 app = Flask(__name__)
 app.config['Debug'] = True
-app.config['SQLALCHEMY_DATABASE_URI'] = #add sql and mysql info
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://build-a-blog:password@localhost:8889/build-a-blog'
 app.config['SQLALCHEMY_ECHO'] = True
 db = SQLAlchemy(app)
-app.secret_key = 'randomstring'
 
 
 class Blog(db.Model):
@@ -19,28 +17,25 @@ class Blog(db.Model):
 
     def __init__(self, title, body):
         self.title = title
-        self.body = #body
-        self.owner = owner
-
+        self.body = body
 
 
 @app.route('/blog', methods =['POST', 'GET'])
 def blog ():
-    
 
-
-    return render_template('blogpage.html')
+    blogs = Blog.query.all()
+    return render_template('blogpage.html',title="Your Blog Posts", blogs=blogs)
 
 
 @app.route('/new-post', methods=['POST'])
 def new_post():
        if request.method == 'POST':
         blog_post = request.form['blog']
-        new_blog_post = Blog(title, body)
+        new_blog_post = Blog(title, blog_post)
         db.session.add(new_blog_post)
         db.session.commit()
 
-    return redirect('/blog')
+        return redirect('/blog')
 
 
 if __name__ == '__main__':

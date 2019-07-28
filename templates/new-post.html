@@ -2,11 +2,17 @@
 
 {% block content %}
     <h1>Build A Blog</h1>
+
+
+
     <form method='POST'>
+        <label>Title:<input type ='text' name='title'>
+        
+        </label>
+        
+        
         <label>
-            New Blog:
-            <!-- add max characters field -->
-            <input type="text" name='blog' >
+            Blog:<input type="text" name='blog' >
         
         </label>
         <input type="submit" value='Add Blog Entry' />
