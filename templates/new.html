@@ -3,16 +3,18 @@
 {% block content %}
     <h1>Build A Blog</h1>
 
-
+    <style>
+            .error { color: red; }
+        </style>
 
     <form action="/new" method='POST'>
-        <p><label>Title:<input type ='text' name='title'>
+        <p><label>Title:<input type ='text' name='title' value='{{ blog_title }}'>
             <span class ='error'> {{title_error}}</span>
         </label>
         </p>
         
         <p><label>
-            Blog:<input type="text" name='blog' >
+            Blog:<input type="text" name='blog' value='{{ blog_post }}'>
             <span class ='error'> {{post_error}}</span>
         </label>
         <br>
