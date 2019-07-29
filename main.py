@@ -48,8 +48,8 @@ def new ():
             db.session.add(new_blog_post)
             db.session.commit()
             return redirect('/blog')
-        else:
-            return render_template('new.html', title_error=title_error, post_error=post_error)
+    
+        return render_template('new.html', title_error=title_error, post_error=post_error)
 
 
     if request.method == 'GET':
