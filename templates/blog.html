@@ -12,7 +12,7 @@
 
         <div>
             {% for blog in blogs %}
-                <p><strong>{{blog.title}}</strong></p>
+                <p> <a href="/blog?id={{blog.id}}"><strong>{{blog.title}}</strong></a></p>
                 
                 <p>{{blog.body}}</p>
              
