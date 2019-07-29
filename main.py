@@ -29,18 +29,33 @@ def blog ():
 
 @app.route('/new', methods =['POST', 'GET'])
 def new ():
-        if request.method == 'POST':
-            blog_post = request.form['blog']
-            blog_title = request.form['title']
+
+    title_error = ""
+    post_error = ""
+
+    if request.method == 'POST':
+        blog_post = request.form['blog']
+        blog_title = request.form['title']
+
+        if (blog_post == ""):
+            post_error = "Please Enter a Post"
+
+        if (blog_title == ""):
+            title_error = "Please Enter a Title"
+
+        if post_error == "" and title_error == "":
             new_blog_post = Blog(blog_title, blog_post)
             db.session.add(new_blog_post)
             db.session.commit()
             return redirect('/blog')
+        else:
+            return render_template('new.html', title_error=title_error, post_error=post_error)
 
-        if request.method == 'GET':
-            return render_template('new.html')
 
-        return render_template('new.html', title="Build A Blog")
+    if request.method == 'GET':
+        return render_template('new.html')
+
+        #return render_template('new.html', title="Build A Blog")
 
 
 if __name__ == '__main__':

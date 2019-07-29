@@ -6,16 +6,17 @@
 
 
     <form action="/new" method='POST'>
-        <label>Title:<input type ='text' name='title'>
-        
+        <p><label>Title:<input type ='text' name='title'>
+            <span class ='error'> {{title_error}}</span>
         </label>
+        </p>
         
-        
-        <label>
+        <p><label>
             Blog:<input type="text" name='blog' >
-        
+            <span class ='error'> {{blog_error}}</span>
         </label>
         <input type="submit" value='Add Blog Entry' />
+    </p>
     </form>
 
 
