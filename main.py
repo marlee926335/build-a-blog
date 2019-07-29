@@ -19,7 +19,11 @@ class Blog(db.Model):
         self.title = title
         self.body = body
 
+@app.route('/')
+def index():
+    return redirect('/blog')
 
+    
 @app.route('/blog', methods =['POST', 'GET'])
 def blog ():
 
